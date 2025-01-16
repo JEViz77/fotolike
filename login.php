@@ -11,7 +11,7 @@ if(isset($_POST["email"])){
             session_start();
             $_SESSION["idusuario"] = $usuario["id"];
             $_SESSION["nombre"] = $usuario["nombre"];
-            echo "Bienvenido";
+            header("Location: nueva_foto.php");
             exit();
         }else{
             echo "Contraseña incorrecta";
