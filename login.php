@@ -36,7 +36,7 @@ if(isset($_POST["email"])){
         <input type="email" name="email" id="email" required placeholder="Email">
         <label for="password">Contraseña</label>
         <input type="password" name="password" id="password" required placeholder="Contraseña">
-        <input type="submit" value="Iniciar sesión">
+        <input type="submit" value="log">
     </form>
 </body>
 </html>
