@@ -1,12 +1,12 @@
 <?php
-if(isset($_POST["nombre"])){
+if(isset($_POST["nombre"])){ //si se envio un nombre por post entonces...
     include("conexiondb.php");
-    $sql="INSERT INTO usuarios (nombre, email, password) VALUES (:nombre, :email, :password)";  
-    $stm=$conexion->prepare($sql);
-    $stm->bindParam(":nombre", $_POST["nombre"]);
+    $sql="INSERT INTO usuarios (nombre, email, password) VALUES (:nombre, :email, :password)";
+    $stm=$conexion->prepare($sql); 
+    $stm->bindParam(":nombre", $_POST["nombre"]); 
     $stm->bindParam("email", $_POST["email"]);
-    $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $stm->bindParam("password", $hashed_password);  
+    $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);// encriptar la contraseña
+    $stm->bindParam("password", $hashed_password);  //vincular el parametro :password con el valor de la contraseña encriptada
     $stm->execute();
     header("Location: login.php");
     exit();

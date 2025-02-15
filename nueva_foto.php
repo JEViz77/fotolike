@@ -1,21 +1,21 @@
 <?php
 session_start();
-if (!isset($_SESSION["usuario_id"])) {
+if (!isset($_SESSION["usuario_id"])) { //si no hay una sesion iniciada entonces..
     header("Location: login.php");
 }
-if (isset($_POST["titulo"])) {
+if (isset($_POST["titulo"])) { //si se envio el titulo de la foto por post entonces...
     include("conexiondb.php");
-    $nombreFoto = $_FILES["foto"]["name"];
-    $ruta = "./fotos/" . $nombreFoto;
-    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta)) {
-        $sql = "INSERT INTO fotos (titulo,foto,usuario_id) VALUES (:titulo,:foto,:usuario_id)";
-        $stm = $conexion->prepare($sql);
-        $stm->bindParam(":titulo", $_POST["titulo"]);
-        $stm->bindParam(":foto", $ruta);
-        $stm->bindParam(":usuario_id", $_SESSION["usuario_id"]);
-        $stm->execute();
+    $nombreFoto = $_FILES["foto"]["name"]; //obtener el nombre de la foto
+    $ruta = "./fotos/" . $nombreFoto; //definir ruta donde se guarda la foto
+    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta)) { //si se pudo mover la foto a la ruta entonces...
+        $sql = "INSERT INTO fotos (titulo,foto,usuario_id) VALUES (:titulo,:foto,:usuario_id)"; //insertar en la tabla de fotos el titulo de la foto, la ruta de la foto y la id del usuario que subio la foto 
+        $stm = $conexion->prepare($sql); //preparar la consulta 
+        $stm->bindParam(":titulo", $_POST["titulo"]); //vincular el parametro :titulo con el valor del titulo de la foto que se envio por post 
+        $stm->bindParam(":foto", $ruta); //vincular el parametro :foto con el valor de la ruta de la foto 
+        $stm->bindParam(":usuario_id", $_SESSION["usuario_id"]); //vincular el parametro :usuario_id con el valor de la id del usuario que inicio sesion 
+        $stm->execute(); //ejecutar consulta
        
-        header("Location: main.php");
+        header("Location: main.php"); 
         exit();
     }
 }

@@ -1,23 +1,23 @@
 <?php
-if(isset($_POST["email"])){
+if(isset($_POST["email"])){ //si se envio un email por post entonces... 
    include("conexiondb.php");
     $sql="SELECT * FROM usuarios WHERE email=:email";
-    $stm=$conexion->prepare($sql);
-    $stm->bindParam(":email", $_POST["email"]); 
-    $stm->execute();
-    $usuario=$stm->fetch();
-    if($usuario){
-        if(password_verify($_POST["password"], $usuario["password"])){
-            session_start();
-            $_SESSION["usuario_id"] = $usuario["usuario_id"];
-            $_SESSION["nombre"] = $usuario["nombre"];
+    $stm=$conexion->prepare($sql); //prepara la consulta
+    $stm->bindParam(":email", $_POST["email"]); //vincula el parametro :email con el valor del email que se envio por post
+    $stm->execute(); 
+    $usuario=$stm->fetch(); //obtiene la fila de la consulta
+    if($usuario){ //si se encontro un usuario con ese email entonces...
+        if(password_verify($_POST["password"], $usuario["password"])){ //si la contraseña enviada por post coincide con la contraseña hasheada del usuario entonces...
+            session_start(); //iniciar sesion
+            $_SESSION["usuario_id"] = $usuario["usuario_id"]; //guardar la id del usuario en la sesion
+            $_SESSION["nombre"] = $usuario["nombre"]; //guardar el nombre del usuario en la sesion
             header("Location: main.php");
             exit();
-        }else{
+        }else{ //si la contraseña no coincide entonces...
             echo "Contraseña incorrecta";
             exit();
         } 
-    }else{
+    }else{ //si no se encontro un usuario con ese email entonces...
         echo "Usuario no encontrado";
         exit();
     }
