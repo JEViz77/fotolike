@@ -38,6 +38,7 @@ if(isset($_POST["email"])){ //si se envio un email por post entonces...
         <label for="password">Contraseña</label>
         <input type="password" name="password" id="password" required placeholder="Contraseña">
         <input type="submit" value="Iniciar sesión">
+        <p>Si no tienes cuenta pulsa <a href="registro.php">Aqui</a></p>
     </form>
 </body>
 </html>

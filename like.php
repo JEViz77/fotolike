@@ -1,7 +1,7 @@
 <?php
 session_start(); //Iniciar sesion o reanudar la existente
 if (!isset($_SESSION["usuario_id"])){ //Si no hay una sesion iniciada...
-    header("Location: index.html"); //...redireccionar a index.html
+    header("Location: login.php"); //...redireccionar a index.html
     exit(); //Finalizar la ejecucion del script actual (opcional) 
 }
 if(isset($_GET["foto_id"])){ //Si se escribio una id de foto en la url (GET) entonces... 

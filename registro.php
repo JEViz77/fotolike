@@ -31,6 +31,7 @@ if(isset($_POST["nombre"])){ //si se envio un nombre por post entonces...
         <label for="password">Contraseña</label>
         <input type="password" name="password" id="password" required placeholder="Contraseña">
         <input type="submit" value="Registrarse">
+        <p>Si ya tienes cuenta <a href="login.php">Login</a></p>
 </form>
 
 </body>
