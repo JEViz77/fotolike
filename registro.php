@@ -8,6 +8,8 @@ if(isset($_POST["nombre"])){
     $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $stm->bindParam("password", $hashed_password);  
     $stm->execute();
+    header("Location: login.php");
+    exit();
 }
 ?>
 
@@ -18,6 +20,7 @@ if(isset($_POST["nombre"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/registro.css">
 </head>
 <body>
 <form action="" method="post">

@@ -1,17 +1,17 @@
 <?php
 session_start();
-if (!isset($_SESSION["idusuario"])){
-    header("Location: index.php");
+if (!isset($_SESSION["usuario_id"])){
+    header("Location: index.html");
     exit();
 }
-if(isset($_GET["idfoto"])){
+if(isset($_GET["foto_id"])){
     include("conexiondb.php");
-    $sql="INSERT INTO likes (idfoto, idusuario) VALUES (:idfoto, :idusuario)";
+    $sql="INSERT INTO likes (foto_id, usuario_id) VALUES (:foto_id, :usuario_id)";
     $stm=$conexion->prepare($sql);
-    $stm->bindParam(":idfoto", $_GET["idfoto"]);
-    $stm->bindParam(":idusuario", $_SESSION["idusuario"]);
+    $stm->bindParam(":foto_id", $_GET["foto_id"]);
+    $stm->bindParam(":usuario_id", $_SESSION["usuario_id"]);
     $stm->execute();
-    header("Location: index.php");
+    header("Location: main.php");
     exit();
 }
 

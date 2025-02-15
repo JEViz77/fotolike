@@ -9,9 +9,9 @@ if(isset($_POST["email"])){
     if($usuario){
         if(password_verify($_POST["password"], $usuario["password"])){
             session_start();
-            $_SESSION["idusuario"] = $usuario["id"];
+            $_SESSION["usuario_id"] = $usuario["usuario_id"];
             $_SESSION["nombre"] = $usuario["nombre"];
-            header("Location: nueva_foto.php");
+            header("Location: main.php");
             exit();
         }else{
             echo "Contraseña incorrecta";
@@ -29,6 +29,7 @@ if(isset($_POST["email"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <form action="" method="post">
